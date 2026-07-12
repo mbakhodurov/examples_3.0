@@ -6,6 +6,7 @@ import (
 	"errors"
 	"log/slog"
 	"net/http"
+	"os"
 	"os/signal"
 	"syscall"
 	"time"
@@ -83,11 +84,15 @@ func main() {
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer cancel()
 
-	// Адрес HTTP-сервера
-	httpAddress := "0.0.0.0:8080"
+	httpAddress := os.Getenv("HTTP_ADDRESS")
+	if httpAddress == "" {
+		httpAddress = "0.0.0.0:8080"
+	}
 
-	// Строка подключения к Postgres
-	dbURI := "postgres://demo:demo@localhost:5432/demo"
+	dbURI := os.Getenv("DB_URI")
+	if dbURI == "" {
+		dbURI = "postgres://demo:demo@localhost:5432/postgres"
+	}
 
 	// Инициализируем пул соединений к базе данных Postgres
 	var err error
