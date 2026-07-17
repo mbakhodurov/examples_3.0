@@ -13,7 +13,7 @@ type config struct {
 	PG   pgConfig   `yaml:"pg"`
 }
 
-const defaultConfigPath = "config.local.yaml"
+const defaultConfigPath = "../config.local.yaml"
 
 // ResolveConfigPath определяет путь к конфиг-файлу по цепочке приоритетов:
 // флаг -config > env CONFIG_PATH > "config.local.yaml".
