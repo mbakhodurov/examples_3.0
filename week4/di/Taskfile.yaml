@@ -18,6 +18,7 @@ vars:
   PROTOC_GEN_GO: '{{.BIN_DIR}}/protoc-gen-go'
   PROTOC_GEN_GO_GRPC: '{{.BIN_DIR}}/protoc-gen-go-grpc'
   GOOSE: '{{.BIN_DIR}}/goose'
+  MIGRATIONS_DIR: '{{.ROOT_DIR}}/ufo/migrations'
 
   MODULES: ufo platform
 
