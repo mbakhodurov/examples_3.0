@@ -16,6 +16,9 @@ service UFOService {
   // Get возвращает наблюдение НЛО по идентификатору
   rpc Get(GetRequest) returns (GetResponse);
 
+  // GetAll возвращает список всех наблюдений НЛО
+  rpc GetAll(GetAllRequest) returns (GetAllResponse);
+
   // Update обновляет существующее наблюдение НЛО
   rpc Update(UpdateRequest) returns (UpdateResponse);
 
@@ -93,6 +96,15 @@ message GetRequest {
 message GetResponse {
   // sighting данные наблюдения
   Sighting sighting = 1;
+}
+
+// GetAllRequest запрос на получение списка всех наблюдений
+message GetAllRequest {}
+
+// GetAllResponse ответ со списком наблюдений
+message GetAllResponse {
+  // sightings список наблюдений
+  repeated Sighting sightings = 1;
 }
 
 // UpdateRequest запрос на обновление наблюдения

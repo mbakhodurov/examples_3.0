@@ -381,6 +381,89 @@ func (x *GetResponse) GetSighting() *Sighting {
 	return nil
 }
 
+// GetAllRequest запрос на получение списка всех наблюдений
+type GetAllRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAllRequest) Reset() {
+	*x = GetAllRequest{}
+	mi := &file_ufo_v1_ufo_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAllRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllRequest) ProtoMessage() {}
+
+func (x *GetAllRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ufo_v1_ufo_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllRequest.ProtoReflect.Descriptor instead.
+func (*GetAllRequest) Descriptor() ([]byte, []int) {
+	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{5}
+}
+
+// GetAllResponse ответ со списком наблюдений
+type GetAllResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// sightings список наблюдений
+	Sightings     []*Sighting `protobuf:"bytes,1,rep,name=sightings,proto3" json:"sightings,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAllResponse) Reset() {
+	*x = GetAllResponse{}
+	mi := &file_ufo_v1_ufo_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAllResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllResponse) ProtoMessage() {}
+
+func (x *GetAllResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ufo_v1_ufo_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllResponse.ProtoReflect.Descriptor instead.
+func (*GetAllResponse) Descriptor() ([]byte, []int) {
+	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetAllResponse) GetSightings() []*Sighting {
+	if x != nil {
+		return x.Sightings
+	}
+	return nil
+}
+
 // UpdateRequest запрос на обновление наблюдения
 type UpdateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -404,7 +487,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_ufo_v1_ufo_proto_msgTypes[5]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -416,7 +499,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ufo_v1_ufo_proto_msgTypes[5]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -429,7 +512,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{5}
+	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateRequest) GetUuid() string {
@@ -492,7 +575,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_ufo_v1_ufo_proto_msgTypes[6]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -504,7 +587,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ufo_v1_ufo_proto_msgTypes[6]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,7 +600,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{6}
+	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteRequest) GetUuid() string {
@@ -536,7 +619,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_ufo_v1_ufo_proto_msgTypes[7]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -548,7 +631,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ufo_v1_ufo_proto_msgTypes[7]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -561,7 +644,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{7}
+	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{9}
 }
 
 // DeleteResponse ответ на запрос удаления наблюдения
@@ -573,7 +656,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_ufo_v1_ufo_proto_msgTypes[8]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -585,7 +668,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ufo_v1_ufo_proto_msgTypes[8]
+	mi := &file_ufo_v1_ufo_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -598,7 +681,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{8}
+	return file_ufo_v1_ufo_proto_rawDescGZIP(), []int{10}
 }
 
 var File_ufo_v1_ufo_proto protoreflect.FileDescriptor
@@ -636,7 +719,10 @@ const file_ufo_v1_ufo_proto_rawDesc = "" +
 	"GetRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\";\n" +
 	"\vGetResponse\x12,\n" +
-	"\bsighting\x18\x01 \x01(\v2\x10.ufo.v1.SightingR\bsighting\"\x88\x03\n" +
+	"\bsighting\x18\x01 \x01(\v2\x10.ufo.v1.SightingR\bsighting\"\x0f\n" +
+	"\rGetAllRequest\"@\n" +
+	"\x0eGetAllResponse\x12.\n" +
+	"\tsightings\x18\x01 \x03(\v2\x10.ufo.v1.SightingR\tsightings\"\x88\x03\n" +
 	"\rUpdateRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12;\n" +
 	"\vobserved_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
@@ -649,11 +735,12 @@ const file_ufo_v1_ufo_proto_rawDesc = "" +
 	"\rDeleteRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\x10\n" +
 	"\x0eUpdateResponse\"\x10\n" +
-	"\x0eDeleteResponse2\xe7\x01\n" +
+	"\x0eDeleteResponse2\xa0\x02\n" +
 	"\n" +
 	"UFOService\x127\n" +
 	"\x06Create\x12\x15.ufo.v1.CreateRequest\x1a\x16.ufo.v1.CreateResponse\x12.\n" +
 	"\x03Get\x12\x12.ufo.v1.GetRequest\x1a\x13.ufo.v1.GetResponse\x127\n" +
+	"\x06GetAll\x12\x15.ufo.v1.GetAllRequest\x1a\x16.ufo.v1.GetAllResponse\x127\n" +
 	"\x06Update\x12\x15.ufo.v1.UpdateRequest\x1a\x16.ufo.v1.UpdateResponse\x127\n" +
 	"\x06Delete\x12\x15.ufo.v1.DeleteRequest\x1a\x16.ufo.v1.DeleteResponseBYZWgithub.com/mbakhodurov/examples2/week_5/kafka/clean_arch/shared/pkg/proto/ufo/v1;ufo_v1b\x06proto3"
 
@@ -669,54 +756,59 @@ func file_ufo_v1_ufo_proto_rawDescGZIP() []byte {
 	return file_ufo_v1_ufo_proto_rawDescData
 }
 
-var file_ufo_v1_ufo_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_ufo_v1_ufo_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_ufo_v1_ufo_proto_goTypes = []any{
 	(*Sighting)(nil),               // 0: ufo.v1.Sighting
 	(*CreateRequest)(nil),          // 1: ufo.v1.CreateRequest
 	(*CreateResponse)(nil),         // 2: ufo.v1.CreateResponse
 	(*GetRequest)(nil),             // 3: ufo.v1.GetRequest
 	(*GetResponse)(nil),            // 4: ufo.v1.GetResponse
-	(*UpdateRequest)(nil),          // 5: ufo.v1.UpdateRequest
-	(*DeleteRequest)(nil),          // 6: ufo.v1.DeleteRequest
-	(*UpdateResponse)(nil),         // 7: ufo.v1.UpdateResponse
-	(*DeleteResponse)(nil),         // 8: ufo.v1.DeleteResponse
-	(*timestamppb.Timestamp)(nil),  // 9: google.protobuf.Timestamp
-	(*wrapperspb.StringValue)(nil), // 10: google.protobuf.StringValue
-	(*wrapperspb.BoolValue)(nil),   // 11: google.protobuf.BoolValue
-	(*wrapperspb.Int32Value)(nil),  // 12: google.protobuf.Int32Value
+	(*GetAllRequest)(nil),          // 5: ufo.v1.GetAllRequest
+	(*GetAllResponse)(nil),         // 6: ufo.v1.GetAllResponse
+	(*UpdateRequest)(nil),          // 7: ufo.v1.UpdateRequest
+	(*DeleteRequest)(nil),          // 8: ufo.v1.DeleteRequest
+	(*UpdateResponse)(nil),         // 9: ufo.v1.UpdateResponse
+	(*DeleteResponse)(nil),         // 10: ufo.v1.DeleteResponse
+	(*timestamppb.Timestamp)(nil),  // 11: google.protobuf.Timestamp
+	(*wrapperspb.StringValue)(nil), // 12: google.protobuf.StringValue
+	(*wrapperspb.BoolValue)(nil),   // 13: google.protobuf.BoolValue
+	(*wrapperspb.Int32Value)(nil),  // 14: google.protobuf.Int32Value
 }
 var file_ufo_v1_ufo_proto_depIdxs = []int32{
-	9,  // 0: ufo.v1.Sighting.observed_at:type_name -> google.protobuf.Timestamp
-	10, // 1: ufo.v1.Sighting.color:type_name -> google.protobuf.StringValue
-	11, // 2: ufo.v1.Sighting.sound:type_name -> google.protobuf.BoolValue
-	12, // 3: ufo.v1.Sighting.duration_seconds:type_name -> google.protobuf.Int32Value
-	9,  // 4: ufo.v1.Sighting.created_at:type_name -> google.protobuf.Timestamp
-	9,  // 5: ufo.v1.Sighting.updated_at:type_name -> google.protobuf.Timestamp
-	9,  // 6: ufo.v1.Sighting.deleted_at:type_name -> google.protobuf.Timestamp
-	9,  // 7: ufo.v1.CreateRequest.observed_at:type_name -> google.protobuf.Timestamp
-	10, // 8: ufo.v1.CreateRequest.color:type_name -> google.protobuf.StringValue
-	11, // 9: ufo.v1.CreateRequest.sound:type_name -> google.protobuf.BoolValue
-	12, // 10: ufo.v1.CreateRequest.duration_seconds:type_name -> google.protobuf.Int32Value
+	11, // 0: ufo.v1.Sighting.observed_at:type_name -> google.protobuf.Timestamp
+	12, // 1: ufo.v1.Sighting.color:type_name -> google.protobuf.StringValue
+	13, // 2: ufo.v1.Sighting.sound:type_name -> google.protobuf.BoolValue
+	14, // 3: ufo.v1.Sighting.duration_seconds:type_name -> google.protobuf.Int32Value
+	11, // 4: ufo.v1.Sighting.created_at:type_name -> google.protobuf.Timestamp
+	11, // 5: ufo.v1.Sighting.updated_at:type_name -> google.protobuf.Timestamp
+	11, // 6: ufo.v1.Sighting.deleted_at:type_name -> google.protobuf.Timestamp
+	11, // 7: ufo.v1.CreateRequest.observed_at:type_name -> google.protobuf.Timestamp
+	12, // 8: ufo.v1.CreateRequest.color:type_name -> google.protobuf.StringValue
+	13, // 9: ufo.v1.CreateRequest.sound:type_name -> google.protobuf.BoolValue
+	14, // 10: ufo.v1.CreateRequest.duration_seconds:type_name -> google.protobuf.Int32Value
 	0,  // 11: ufo.v1.GetResponse.sighting:type_name -> ufo.v1.Sighting
-	9,  // 12: ufo.v1.UpdateRequest.observed_at:type_name -> google.protobuf.Timestamp
-	10, // 13: ufo.v1.UpdateRequest.location:type_name -> google.protobuf.StringValue
-	10, // 14: ufo.v1.UpdateRequest.description:type_name -> google.protobuf.StringValue
-	10, // 15: ufo.v1.UpdateRequest.color:type_name -> google.protobuf.StringValue
-	11, // 16: ufo.v1.UpdateRequest.sound:type_name -> google.protobuf.BoolValue
-	12, // 17: ufo.v1.UpdateRequest.duration_seconds:type_name -> google.protobuf.Int32Value
-	1,  // 18: ufo.v1.UFOService.Create:input_type -> ufo.v1.CreateRequest
-	3,  // 19: ufo.v1.UFOService.Get:input_type -> ufo.v1.GetRequest
-	5,  // 20: ufo.v1.UFOService.Update:input_type -> ufo.v1.UpdateRequest
-	6,  // 21: ufo.v1.UFOService.Delete:input_type -> ufo.v1.DeleteRequest
-	2,  // 22: ufo.v1.UFOService.Create:output_type -> ufo.v1.CreateResponse
-	4,  // 23: ufo.v1.UFOService.Get:output_type -> ufo.v1.GetResponse
-	7,  // 24: ufo.v1.UFOService.Update:output_type -> ufo.v1.UpdateResponse
-	8,  // 25: ufo.v1.UFOService.Delete:output_type -> ufo.v1.DeleteResponse
-	22, // [22:26] is the sub-list for method output_type
-	18, // [18:22] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	0,  // 12: ufo.v1.GetAllResponse.sightings:type_name -> ufo.v1.Sighting
+	11, // 13: ufo.v1.UpdateRequest.observed_at:type_name -> google.protobuf.Timestamp
+	12, // 14: ufo.v1.UpdateRequest.location:type_name -> google.protobuf.StringValue
+	12, // 15: ufo.v1.UpdateRequest.description:type_name -> google.protobuf.StringValue
+	12, // 16: ufo.v1.UpdateRequest.color:type_name -> google.protobuf.StringValue
+	13, // 17: ufo.v1.UpdateRequest.sound:type_name -> google.protobuf.BoolValue
+	14, // 18: ufo.v1.UpdateRequest.duration_seconds:type_name -> google.protobuf.Int32Value
+	1,  // 19: ufo.v1.UFOService.Create:input_type -> ufo.v1.CreateRequest
+	3,  // 20: ufo.v1.UFOService.Get:input_type -> ufo.v1.GetRequest
+	5,  // 21: ufo.v1.UFOService.GetAll:input_type -> ufo.v1.GetAllRequest
+	7,  // 22: ufo.v1.UFOService.Update:input_type -> ufo.v1.UpdateRequest
+	8,  // 23: ufo.v1.UFOService.Delete:input_type -> ufo.v1.DeleteRequest
+	2,  // 24: ufo.v1.UFOService.Create:output_type -> ufo.v1.CreateResponse
+	4,  // 25: ufo.v1.UFOService.Get:output_type -> ufo.v1.GetResponse
+	6,  // 26: ufo.v1.UFOService.GetAll:output_type -> ufo.v1.GetAllResponse
+	9,  // 27: ufo.v1.UFOService.Update:output_type -> ufo.v1.UpdateResponse
+	10, // 28: ufo.v1.UFOService.Delete:output_type -> ufo.v1.DeleteResponse
+	24, // [24:29] is the sub-list for method output_type
+	19, // [19:24] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_ufo_v1_ufo_proto_init() }
@@ -730,7 +822,7 @@ func file_ufo_v1_ufo_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ufo_v1_ufo_proto_rawDesc), len(file_ufo_v1_ufo_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

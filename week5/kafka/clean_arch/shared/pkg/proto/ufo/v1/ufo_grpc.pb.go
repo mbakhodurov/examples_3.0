@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	UFOService_Create_FullMethodName = "/ufo.v1.UFOService/Create"
 	UFOService_Get_FullMethodName    = "/ufo.v1.UFOService/Get"
+	UFOService_GetAll_FullMethodName = "/ufo.v1.UFOService/GetAll"
 	UFOService_Update_FullMethodName = "/ufo.v1.UFOService/Update"
 	UFOService_Delete_FullMethodName = "/ufo.v1.UFOService/Delete"
 )
@@ -37,6 +38,8 @@ type UFOServiceClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	// Get возвращает наблюдение НЛО по идентификатору
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	// GetAll возвращает список всех наблюдений НЛО
+	GetAll(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllResponse, error)
 	// Update обновляет существующее наблюдение НЛО
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	// Delete выполняет мягкое удаление наблюдения НЛО
@@ -65,6 +68,16 @@ func (c *uFOServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetResponse)
 	err := c.cc.Invoke(ctx, UFOService_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uFOServiceClient) GetAll(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAllResponse)
+	err := c.cc.Invoke(ctx, UFOService_GetAll_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,6 +114,8 @@ type UFOServiceServer interface {
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	// Get возвращает наблюдение НЛО по идентификатору
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	// GetAll возвращает список всех наблюдений НЛО
+	GetAll(context.Context, *GetAllRequest) (*GetAllResponse, error)
 	// Update обновляет существующее наблюдение НЛО
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	// Delete выполняет мягкое удаление наблюдения НЛО
@@ -120,6 +135,9 @@ func (UnimplementedUFOServiceServer) Create(context.Context, *CreateRequest) (*C
 }
 func (UnimplementedUFOServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedUFOServiceServer) GetAll(context.Context, *GetAllRequest) (*GetAllResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAll not implemented")
 }
 func (UnimplementedUFOServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Update not implemented")
@@ -184,6 +202,24 @@ func _UFOService_Get_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UFOService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UFOServiceServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UFOService_GetAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UFOServiceServer).GetAll(ctx, req.(*GetAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UFOService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
@@ -234,6 +270,10 @@ var UFOService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _UFOService_Get_Handler,
+		},
+		{
+			MethodName: "GetAll",
+			Handler:    _UFOService_GetAll_Handler,
 		},
 		{
 			MethodName: "Update",
