@@ -21,6 +21,9 @@ service UFOService {
 
   // Delete — выполняет мягкое удаление наблюдения НЛО.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
+
+  // GetAll — возвращает список всех наблюдений НЛО.
+  rpc GetAll(GetAllRequest) returns (GetAllResponse);
 }
 
 // Sighting — полная информация о наблюдении НЛО.
@@ -130,3 +133,12 @@ message UpdateResponse {}
 
 // DeleteResponse — ответ на запрос удаления наблюдения.
 message DeleteResponse {}
+
+// GetAllRequest — запрос на получение списка всех наблюдений НЛО.
+message GetAllRequest {}
+
+// GetAllResponse — ответ со списком наблюдений.
+message GetAllResponse {
+  // sightings — список наблюдений.
+  repeated Sighting sightings = 1;
+}

@@ -25,6 +25,7 @@ const (
 	UFOService_Get_FullMethodName    = "/ufo.v1.UFOService/Get"
 	UFOService_Update_FullMethodName = "/ufo.v1.UFOService/Update"
 	UFOService_Delete_FullMethodName = "/ufo.v1.UFOService/Delete"
+	UFOService_GetAll_FullMethodName = "/ufo.v1.UFOService/GetAll"
 )
 
 // UFOServiceClient is the client API for UFOService service.
@@ -41,6 +42,8 @@ type UFOServiceClient interface {
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	// Delete — выполняет мягкое удаление наблюдения НЛО.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	// GetAll — возвращает список всех наблюдений НЛО.
+	GetAll(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllResponse, error)
 }
 
 type uFOServiceClient struct {
@@ -91,6 +94,16 @@ func (c *uFOServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts .
 	return out, nil
 }
 
+func (c *uFOServiceClient) GetAll(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAllResponse)
+	err := c.cc.Invoke(ctx, UFOService_GetAll_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UFOServiceServer is the server API for UFOService service.
 // All implementations must embed UnimplementedUFOServiceServer
 // for forward compatibility.
@@ -105,6 +118,8 @@ type UFOServiceServer interface {
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	// Delete — выполняет мягкое удаление наблюдения НЛО.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	// GetAll — возвращает список всех наблюдений НЛО.
+	GetAll(context.Context, *GetAllRequest) (*GetAllResponse, error)
 	mustEmbedUnimplementedUFOServiceServer()
 }
 
@@ -126,6 +141,9 @@ func (UnimplementedUFOServiceServer) Update(context.Context, *UpdateRequest) (*U
 }
 func (UnimplementedUFOServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedUFOServiceServer) GetAll(context.Context, *GetAllRequest) (*GetAllResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAll not implemented")
 }
 func (UnimplementedUFOServiceServer) mustEmbedUnimplementedUFOServiceServer() {}
 func (UnimplementedUFOServiceServer) testEmbeddedByValue()                    {}
@@ -220,6 +238,24 @@ func _UFOService_Delete_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UFOService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UFOServiceServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UFOService_GetAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UFOServiceServer).GetAll(ctx, req.(*GetAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UFOService_ServiceDesc is the grpc.ServiceDesc for UFOService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +278,10 @@ var UFOService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _UFOService_Delete_Handler,
+		},
+		{
+			MethodName: "GetAll",
+			Handler:    _UFOService_GetAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

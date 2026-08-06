@@ -132,3 +132,13 @@ func SightingToDTO(s model.Sighting) *ufo_v1.Sighting {
 		DeletedAt:       deletedAt,
 	}
 }
+
+// SightingsToDTO конвертирует список доменных моделей наблюдений в список транспортных DTO
+func SightingsToDTO(sightings []model.Sighting) []*ufo_v1.Sighting {
+	dtos := make([]*ufo_v1.Sighting, 0, len(sightings))
+	for _, s := range sightings {
+		dtos = append(dtos, SightingToDTO(s))
+	}
+
+	return dtos
+}

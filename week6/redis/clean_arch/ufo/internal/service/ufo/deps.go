@@ -12,6 +12,7 @@ import (
 type UFORepository interface {
 	Create(ctx context.Context, sighting model.Sighting) error
 	Get(ctx context.Context, uuid string) (model.Sighting, error)
+	GetAll(ctx context.Context) ([]model.Sighting, error)
 	Update(ctx context.Context, uuid string, updateInfo input.UpdateSightingInput) error
 	Delete(ctx context.Context, uuid string) error
 }
