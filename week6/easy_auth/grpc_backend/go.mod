@@ -1,6 +1,6 @@
 module github.com/mbakhodurov/examples2/week_6/easy_auth/grpc_backend
 
-go 1.26.5
+go 1.25.4
 
 replace github.com/mbakhodurov/examples2/week_6/easy_auth/shared => ../shared
 
