@@ -1,0 +1,9 @@
+go 1.25.4
+
+use (
+	./analysis
+	./classification
+	./platform
+	./shared
+	./ufo
+)
