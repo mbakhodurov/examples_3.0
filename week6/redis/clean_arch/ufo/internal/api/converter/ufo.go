@@ -11,28 +11,29 @@ import (
 	ufo_v1 "github.com/mbakhodurov/examples2/week_6/redis/clean_arch/shared/pkg/proto/ufo/v1"
 	"github.com/mbakhodurov/examples2/week_6/redis/clean_arch/ufo/internal/model"
 	"github.com/mbakhodurov/examples2/week_6/redis/clean_arch/ufo/internal/service/input"
+	"github.com/samber/lo"
 )
 
 // CreateRequestToInput преобразует плоский запрос создания наблюдения во вход use case'а
 func CreateRequestToInput(req *ufo_v1.CreateRequest) input.CreateSightingInput {
 	var observedAt *time.Time
 	if req.ObservedAt != nil {
-		observedAt = new(req.ObservedAt.AsTime())
+		observedAt = lo.ToPtr(req.ObservedAt.AsTime())
 	}
 
 	var color *string
 	if req.Color != nil {
-		color = new(req.Color.Value)
+		color = lo.ToPtr(req.Color.Value)
 	}
 
 	var sound *bool
 	if req.Sound != nil {
-		sound = new(req.Sound.Value)
+		sound = lo.ToPtr(req.Sound.Value)
 	}
 
 	var durationSeconds *int32
 	if req.DurationSeconds != nil {
-		durationSeconds = new(req.DurationSeconds.Value)
+		durationSeconds = lo.ToPtr(req.DurationSeconds.Value)
 	}
 
 	return input.CreateSightingInput{
@@ -49,32 +50,32 @@ func CreateRequestToInput(req *ufo_v1.CreateRequest) input.CreateSightingInput {
 func UpdateRequestToInput(req *ufo_v1.UpdateRequest) input.UpdateSightingInput {
 	var observedAt *time.Time
 	if req.ObservedAt != nil {
-		observedAt = new(req.ObservedAt.AsTime())
+		observedAt = lo.ToPtr(req.ObservedAt.AsTime())
 	}
 
 	var location *string
 	if req.Location != nil {
-		location = new(req.Location.Value)
+		location = lo.ToPtr(req.Location.Value)
 	}
 
 	var description *string
 	if req.Description != nil {
-		description = new(req.Description.Value)
+		description = lo.ToPtr(req.Description.Value)
 	}
 
 	var color *string
 	if req.Color != nil {
-		color = new(req.Color.Value)
+		color = lo.ToPtr(req.Color.Value)
 	}
 
 	var sound *bool
 	if req.Sound != nil {
-		sound = new(req.Sound.Value)
+		sound = lo.ToPtr(req.Sound.Value)
 	}
 
 	var durationSeconds *int32
 	if req.DurationSeconds != nil {
-		durationSeconds = new(req.DurationSeconds.Value)
+		durationSeconds = lo.ToPtr(req.DurationSeconds.Value)
 	}
 
 	return input.UpdateSightingInput{

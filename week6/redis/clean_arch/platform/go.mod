@@ -1,6 +1,6 @@
 module github.com/mbakhodurov/examples2/week_6/redis/clean_arch/platform
 
-go 1.26.5
+go 1.25.4
 
 require (
 	github.com/redis/go-redis/v9 v9.22.0

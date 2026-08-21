@@ -5,6 +5,7 @@ import (
 
 	"github.com/mbakhodurov/examples2/week_6/redis/clean_arch/ufo/internal/model"
 	repoModel "github.com/mbakhodurov/examples2/week_6/redis/clean_arch/ufo/internal/repository/model"
+	"github.com/samber/lo"
 )
 
 // SightingToRedisView — конвертер из модели домена в Redis view
@@ -20,13 +21,13 @@ func SightingToRedisView(s model.Sighting) repoModel.SightingRedisView {
 	}
 
 	if s.ObservedAt != nil {
-		view.ObservedAtNs = new(s.ObservedAt.UnixNano())
+		view.ObservedAtNs = lo.ToPtr(s.ObservedAt.UnixNano())
 	}
 	if s.UpdatedAt != nil {
-		view.UpdatedAtNs = new(s.UpdatedAt.UnixNano())
+		view.UpdatedAtNs = lo.ToPtr(s.UpdatedAt.UnixNano())
 	}
 	if s.DeletedAt != nil {
-		view.DeletedAtNs = new(s.DeletedAt.UnixNano())
+		view.DeletedAtNs = lo.ToPtr(s.DeletedAt.UnixNano())
 	}
 
 	return view
@@ -61,13 +62,13 @@ func SightingFromRedisView(redisView repoModel.SightingRedisView) model.Sighting
 	}
 
 	if redisView.ObservedAtNs != nil {
-		sighting.ObservedAt = new(time.Unix(0, *redisView.ObservedAtNs))
+		sighting.ObservedAt = lo.ToPtr(time.Unix(0, *redisView.ObservedAtNs))
 	}
 	if redisView.UpdatedAtNs != nil {
-		sighting.UpdatedAt = new(time.Unix(0, *redisView.UpdatedAtNs))
+		sighting.UpdatedAt = lo.ToPtr(time.Unix(0, *redisView.UpdatedAtNs))
 	}
 	if redisView.DeletedAtNs != nil {
-		sighting.DeletedAt = new(time.Unix(0, *redisView.DeletedAtNs))
+		sighting.DeletedAt = lo.ToPtr(time.Unix(0, *redisView.DeletedAtNs))
 	}
 
 	return sighting
